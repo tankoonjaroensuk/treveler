@@ -9,9 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@sendgrid/mail": "^8.1.6",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.12.10",
+    "googleapis": "^165.0.0",
     "next": "16.0.1",
+    "nodemailer": "^7.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },

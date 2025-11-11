@@ -1,27 +1,68 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import EmailLink from "./EmailLink"
 import PhoneLink from "./PhoneLink"
 import GoogleMap from "./GoogleMap"
+
+import SuccessAlert from "./Alert/SuccessAlert"
+import ErrorAlert from "./Alert/ErrorAlert"
 
 export default function ContactForm() {
   const [email, setEmail] = useState("")
   const [subject, setSubject] = useState("")
   const [message, setMessage] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState<string>("")
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log({ email, subject, message })
-    alert("Form submitted!")
-    setEmail("")
-    setSubject("")
-    setMessage("")
+    setStatus("sending")
+    setErrorMessage("")
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, subject, message }),
+      })
+
+      const data = await res.json()
+
+      if (data.success) {
+        setStatus("success")
+        setEmail("")
+        setSubject("")
+        setMessage("")
+      } else {
+        setStatus("error")
+        setErrorMessage(data.error || "Failed to send message")
+      }
+    } catch (err: any) {
+      console.error(err)
+      setStatus("error")
+      setErrorMessage("Something went wrong. Please try again.")
+    }
+    setTimeout(() => setStatus("idle"), 5000)
   }
 
+
+
+
   return (
+
     <section className="py-24">
+      <div className="fixed top-5 right-5 z-50">
+        {status === "success" && <SuccessAlert message="Message sent successfully!" />}
+        {status === "error" && <ErrorAlert message={errorMessage} />}
+        {status === "sending" && (
+          <div className="p-3 text-sm text-blue-700 bg-blue-100 rounded-lg shadow-md">
+            Sending...
+          </div>
+        )}
+      </div>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="md:flex gap-x-24 clear-left md:mb-16 mb-10">
           {/* Form */}
