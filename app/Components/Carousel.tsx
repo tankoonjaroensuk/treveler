@@ -29,13 +29,12 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative w-full h-64 md:h-96 overflow-hidden rounded-lg">
+    <div className="relative w-full h-64 md:h-96 overflow-hidden">
       {images.map((src, idx) => (
         <div
           key={idx}
-          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
-            idx === current ? "opacity-100 z-10" : "opacity-0 z-0"
-          }`}
+          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${idx === current ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
         >
           <Image
             src={src}
@@ -46,20 +45,17 @@ export default function Carousel() {
         </div>
       ))}
 
-      {/* Indicators */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
         {images.map((_, idx) => (
           <button
             key={idx}
-            className={`w-3 h-3 rounded-full ${
-              idx === current ? "bg-white" : "bg-gray-400"
-            }`}
+            className={`w-3 h-3 rounded-full ${idx === current ? "bg-white" : "bg-gray-400"
+              }`}
             onClick={() => setCurrent(idx)}
           />
         ))}
       </div>
 
-      {/* Prev / Next */}
       <button
         className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/30 p-2 rounded-full hover:bg-white/50"
         onClick={prevSlide}

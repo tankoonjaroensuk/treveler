@@ -43,7 +43,7 @@ const breadcrumbItems = [
 
   return (
     <nav
-      className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 relative z-5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+      className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 relative z-5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4"
       aria-label="Breadcrumb"
     >
       {breadcrumbItems.map((item, idx) => {
