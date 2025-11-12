@@ -91,7 +91,7 @@ export async function POST(req: Request) {
           </p>
           <p class="mt-3 text-gray-500 dark:text-gray-400">© 2025 Traveler Thailand. All Rights Reserved.</p>
         </footer>
-      </section>
+      </section>ƒ
     `;
 
     await sendEmail({

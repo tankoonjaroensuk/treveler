@@ -20,7 +20,7 @@ const Alert: React.FC<AlertProps> = ({ type, title, message, icon }) => {
 
   const defaultTitle = title || type.charAt(0).toUpperCase() + type.slice(1);
 
-  const renderIcon = (): JSX.Element => {
+  const renderIcon = (): React.ReactNode => {
     if (icon) return <>{icon}</>;
 
     switch (type) {
