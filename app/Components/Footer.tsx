@@ -36,7 +36,7 @@ export default function Footer() {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
 
         <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-         © Copyright 2025 By <Link href="https://axgroupofficial.com/" className="hover:underline">AX GROUP International Co., Ltd.</Link>
+         © Copyright 2025 By <Link href="/" className="hover:underline">Tankoon Jaroensuk</Link>
         </span>
       </div>
     </footer>
